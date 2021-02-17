@@ -1,0 +1,20 @@
+{
+  "name": "ljpc/hosting-api",
+  "description": "Connect to LJPc hosting without having to type CURL commands",
+  "type": "library",
+  "require": {
+    "php": "^8.0",
+    "ext-curl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "LJPcHosting\\v1\\": "src"
+    }
+  },
+  "authors": [
+    {
+      "name": "LJPc",
+      "email": "info@ljpc.nl"
+    }
+  ]
+}
