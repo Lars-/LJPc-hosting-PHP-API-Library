@@ -13,13 +13,13 @@ use LJPcHosting\v1\Endpoints\ValuePacks;
 use RuntimeException;
 
 class API {
-    private static ?self $instance = null;
+    protected static self $instance;
     protected string $apiUrl = 'https://api.ljpc-hosting.nl/v1';
     protected string $apiKey;
 
     public static function instance(): self {
-        if (self::$instance === null) {
-            self::$instance = new self();
+        if ( ! isset(self::$instance)) {
+            self::$instance = new self;
         }
 
         return self::$instance;
