@@ -14,8 +14,8 @@ use RuntimeException;
 
 class API {
     private static ?self $instance = null;
-    private string $apiUrl = 'https://api.ljpc-hosting.nl/v1';
-    private string $apiKey;
+    protected string $apiUrl = 'https://api.ljpc-hosting.nl/v1';
+    protected string $apiKey;
 
     public static function instance(): self {
         if (self::$instance === null) {
@@ -25,7 +25,7 @@ class API {
         return self::$instance;
     }
 
-    public function call(string $method, string $url, array $data = []): array {
+    public function call(string $method, string $url, array $data = [], array $extraHeaders = []): array {
         $curl = curl_init();
 
         curl_setopt_array($curl, [
@@ -38,10 +38,10 @@ class API {
             CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST  => $method,
             CURLOPT_POSTFIELDS     => json_encode($data, JSON_THROW_ON_ERROR),
-            CURLOPT_HTTPHEADER     => [
+            CURLOPT_HTTPHEADER     => array_merge([
                 'X-LJPc-API-Key: ' . $this->apiKey,
                 'Content-Type: application/json',
-            ],
+            ], $extraHeaders),
         ]);
 
         $response = curl_exec($curl);
