@@ -10,7 +10,7 @@ use LJPcHosting\v1\Endpoints\SharedHosting;
 use LJPcHosting\v1\Endpoints\Subscriptions;
 use LJPcHosting\v1\Endpoints\Users;
 use LJPcHosting\v1\Endpoints\ValuePacks;
-use RuntimeException;
+use LJPcHosting\v1\Exceptions\APICallException;
 
 class API {
     protected static self $instance;
@@ -48,7 +48,10 @@ class API {
 
         $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         if ((int)$httpCode !== 200) {
-            throw new RuntimeException("[$httpCode] Something went wrong: $response", $httpCode);
+            throw new APICallException("[$httpCode] Something went wrong: $response", $httpCode, extraInformation: [
+                'response'        => $response,
+                'responseDecoded' => json_decode($response, true),
+            ]);
         }
 
         curl_close($curl);
