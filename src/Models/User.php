@@ -18,6 +18,8 @@ class User {
     protected string $city;
     protected string $country;
     protected ?string $password;
+    protected string $role;
+    protected string $apiKey;
     protected DateTime $lastLogin;
     protected DateTime $createdAt;
     protected DateTime $updatedAt;
@@ -246,5 +248,19 @@ class User {
         $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole(): string {
+        return $this->role;
+    }
+
+    /**
+     * @return string
+     */
+    public function getApiKey(): string {
+        return $this->apiKey;
     }
 }

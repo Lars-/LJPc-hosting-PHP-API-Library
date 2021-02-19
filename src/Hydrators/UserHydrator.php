@@ -19,6 +19,8 @@ class UserHydrator extends User {
         $user->zipcode     = $data['zipcode'];
         $user->city        = $data['city'];
         $user->country     = $data['country'];
+        $user->role        = $data['role'];
+        $user->apiKey      = $data['apiKey'];
         $user->lastLogin   = DateTime::createFromFormat(DATE_ATOM, $data['lastLogin']);
         $user->createdAt   = DateTime::createFromFormat(DATE_ATOM, $data['createdAt']);
         $user->updatedAt   = DateTime::createFromFormat(DATE_ATOM, $data['updatedAt']);
@@ -38,6 +40,8 @@ class UserHydrator extends User {
             'zipcode'     => $user->zipcode,
             'city'        => $user->city,
             'country'     => $user->country,
+            'role'        => $user->role,
+            'apiKey'      => $user->apiKey,
             'lastLogin'   => $user->lastLogin->format(DATE_ATOM),
             'createdAt'   => $user->createdAt->format(DATE_ATOM),
             'updatedAt'   => $user->updatedAt->format(DATE_ATOM),
