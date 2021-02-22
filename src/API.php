@@ -5,6 +5,7 @@ namespace LJPcHosting\v1;
 use LJPcHosting\v1\Endpoints\DedicatedHosting;
 use LJPcHosting\v1\Endpoints\DomainNames;
 use LJPcHosting\v1\Endpoints\DomainOwners;
+use LJPcHosting\v1\Endpoints\Invoices;
 use LJPcHosting\v1\Endpoints\NameserverGroups;
 use LJPcHosting\v1\Endpoints\SharedHosting;
 use LJPcHosting\v1\Endpoints\Subscriptions;
@@ -65,6 +66,10 @@ class API {
 
     public function users(): Users {
         return Users::instance();
+    }
+
+    public function invoices(): Invoices {
+        return Invoices::instance();
     }
 
     public function domainNames(): DomainNames {
