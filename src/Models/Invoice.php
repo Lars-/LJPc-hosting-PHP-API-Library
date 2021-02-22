@@ -8,11 +8,11 @@ class Invoice {
     protected string $invoiceNumber;
     protected int $profile;
     protected string $email;
-    protected DateTime $sent;
+    protected ?DateTime $sent;
     protected float $open;
-    protected DateTime $paidDate;
+    protected ?DateTime $paidDate;
     protected string $paymentUrl;
-    protected DateTime $dueDate;
+    protected ?DateTime $dueDate;
     protected array $history;
     protected float $total;
     protected float $tax;
@@ -29,7 +29,7 @@ class Invoice {
         return $this->email;
     }
 
-    public function getSent(): DateTime {
+    public function getSent(): ?DateTime {
         return $this->sent;
     }
 
@@ -37,7 +37,7 @@ class Invoice {
         return $this->open;
     }
 
-    public function getPaidDate(): DateTime {
+    public function getPaidDate(): ?DateTime {
         return $this->paidDate;
     }
 
@@ -45,7 +45,7 @@ class Invoice {
         return $this->paymentUrl;
     }
 
-    public function getDueDate(): DateTime {
+    public function getDueDate(): ?DateTime {
         return $this->dueDate;
     }
 

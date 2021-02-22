@@ -10,11 +10,13 @@ class InvoiceHydrator extends Invoice {
         $invoice->invoiceNumber = $data['invoiceNumber'];
         $invoice->profile       = $data['profile'];
         $invoice->email         = $data['email'];
-        $invoice->sent          = DateTime::createFromFormat(DATE_ATOM, $data['sent']);
+        $invoice->sent          = $data['sent'] === null ? null : DateTime::createFromFormat(DATE_ATOM, $data['sent']);
         $invoice->open          = $data['open'];
-        $invoice->paidDate      = DateTime::createFromFormat(DATE_ATOM, $data['paidDate']);
+        $invoice->paidDate      = $data['paidDate'] === null ? null : DateTime::createFromFormat(DATE_ATOM,
+            $data['paidDate']);
         $invoice->paymentUrl    = $data['paymentUrl'];
-        $invoice->dueDate       = DateTime::createFromFormat(DATE_ATOM, $data['dueDate']);
+        $invoice->dueDate       = $data['dueDate'] === null ? null : DateTime::createFromFormat(DATE_ATOM,
+            $data['dueDate']);
         $invoice->history       = $data['history'];
         $invoice->total         = $data['total'];
         $invoice->tax           = $data['tax'];
