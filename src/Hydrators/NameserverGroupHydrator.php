@@ -4,8 +4,8 @@ namespace LJPcHosting\v1\Hydrators;
 
 use DateTime;
 use JetBrains\PhpStorm\ArrayShape;
+use LJPcHosting\v1\Models\Nameserver;
 use LJPcHosting\v1\Models\NameserverGroup;
-use Nameserver;
 use RuntimeException;
 
 class NameserverGroupHydrator extends NameserverGroup {

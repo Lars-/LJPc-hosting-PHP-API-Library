@@ -4,7 +4,6 @@ namespace LJPcHosting\v1\Models;
 
 use DateTime;
 use LJPcHosting\v1\API;
-use Nameserver;
 use RuntimeException;
 
 class NameserverGroup {

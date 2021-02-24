@@ -1,6 +1,8 @@
 <?php
+namespace LJPcHosting\v1\Models;
 
 use JetBrains\PhpStorm\ArrayShape;
+use RuntimeException;
 
 class Nameserver {
     protected string $hostname;
@@ -63,8 +65,7 @@ class Nameserver {
         return $this;
     }
 
-    #[ArrayShape(['hostname' => "string", 'ipv4' => "string", 'ipv6' => "null|string"])] public function toArray(
-    ): array {
+    #[ArrayShape(['hostname' => "string", 'ipv4' => "string", 'ipv6' => "null|string"])] public function toArray(): array {
         return [
             'hostname' => $this->hostname,
             'ipv4'     => $this->ipv4,
