@@ -3,7 +3,9 @@
 namespace LJPcHosting\v1\Models;
 
 use DateTime;
+use JsonException;
 use LJPcHosting\v1\API;
+use LJPcHosting\v1\Exceptions\APICallException;
 
 class Subscription {
     protected string $reference;
@@ -60,8 +62,24 @@ class Subscription {
         return $this->active;
     }
 
-    public function getProduct() {
-        //TODO : implement
+    /**
+     * @return DedicatedHosting|SharedHosting|DomainName|ValuePack|null
+     * @throws JsonException
+     * @throws APICallException
+     */
+    public function getProduct(): DedicatedHosting|SharedHosting|DomainName|ValuePack|null {
+        switch ($this->getProductType()) {
+            case 'domain_name':
+                return API::instance()->domainNames()->get($this->getProductReference());
+            case 'shared_hosting':
+                return API::instance()->sharedHosting()->get($this->getProductReference());
+            case 'dedicated_hosting':
+                return API::instance()->dedicatedHosting()->get($this->getProductReference());
+            case 'value_pack':
+                return API::instance()->valuePacks()->get($this->getProductReference());
+        }
+
+        return null;
     }
 
     public function getProductType(): string {

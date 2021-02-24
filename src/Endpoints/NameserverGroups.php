@@ -2,6 +2,8 @@
 
 namespace LJPcHosting\v1\Endpoints;
 
+use JsonException;
+use LJPcHosting\v1\Exceptions\APICallException;
 use LJPcHosting\v1\Hydrators\NameserverGroupHydrator;
 use LJPcHosting\v1\Models\NameserverGroup;
 use Nameserver;
@@ -9,6 +11,8 @@ use Nameserver;
 class NameserverGroups extends EndpointInterface {
     /**
      * @return NameserverGroup[]
+     * @throws JsonException
+     * @throws APICallException
      */
     public function all(): array {
         $nameserverGroups         = $this->call('GET', '/nameserver_groups');
@@ -22,6 +26,13 @@ class NameserverGroups extends EndpointInterface {
         return $hydratedNameserverGroups;
     }
 
+    /**
+     * @param string $reference
+     *
+     * @return NameserverGroup
+     * @throws JsonException
+     * @throws APICallException
+     */
     public function get(string $reference): NameserverGroup {
         $nameserverGroupResponse = $this->call('GET', "/nameserver_groups/$reference");
 
@@ -31,6 +42,13 @@ class NameserverGroups extends EndpointInterface {
         return $newNameserverGroup;
     }
 
+    /**
+     * @param NameserverGroup $nameserverGroup
+     *
+     * @return NameserverGroup
+     * @throws JsonException
+     * @throws APICallException
+     */
     public function update(NameserverGroup $nameserverGroup): NameserverGroup {
         $nameserverGroupData = NameserverGroupHydrator::extract($nameserverGroup);
 

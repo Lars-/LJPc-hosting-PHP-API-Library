@@ -2,12 +2,16 @@
 
 namespace LJPcHosting\v1\Endpoints;
 
+use JsonException;
+use LJPcHosting\v1\Exceptions\APICallException;
 use LJPcHosting\v1\Hydrators\DomainOwnerHydrator;
 use LJPcHosting\v1\Models\DomainOwner;
 
 class DomainOwners extends EndpointInterface {
     /**
      * @return DomainOwner[]
+     * @throws JsonException
+     * @throws APICallException
      */
     public function all(): array {
         $domainOwners         = $this->call('GET', '/domain_owners');
@@ -21,6 +25,13 @@ class DomainOwners extends EndpointInterface {
         return $hydratedDomainOwners;
     }
 
+    /**
+     * @param string $reference
+     *
+     * @return DomainOwner
+     * @throws JsonException
+     * @throws APICallException
+     */
     public function get(string $reference): DomainOwner {
         $domainOwnerResponse = $this->call('GET', "/domain_owners/$reference");
 
@@ -30,6 +41,13 @@ class DomainOwners extends EndpointInterface {
         return $newDomainOwner;
     }
 
+    /**
+     * @param DomainOwner $domainOwner
+     *
+     * @return DomainOwner
+     * @throws JsonException
+     * @throws APICallException
+     */
     public function update(DomainOwner $domainOwner): DomainOwner {
         $domainOwnerData = DomainOwnerHydrator::extract($domainOwner);
 
@@ -53,6 +71,8 @@ class DomainOwners extends EndpointInterface {
      * @param string $country
      *
      * @return DomainOwner
+     * @throws JsonException
+     * @throws APICallException
      */
     public function create(
         string $companyName,

@@ -2,12 +2,16 @@
 
 namespace LJPcHosting\v1\Endpoints;
 
+use JsonException;
+use LJPcHosting\v1\Exceptions\APICallException;
 use LJPcHosting\v1\Hydrators\SubscriptionHydrator;
 use LJPcHosting\v1\Models\Subscription;
 
 class Subscriptions extends EndpointInterface {
     /**
      * @return Subscription[]
+     * @throws JsonException
+     * @throws APICallException
      */
     public function all(): array {
         $subscriptions         = $this->call('GET', '/subscriptions');
@@ -21,6 +25,13 @@ class Subscriptions extends EndpointInterface {
         return $hydratedSubscriptions;
     }
 
+    /**
+     * @param string $reference
+     *
+     * @return Subscription
+     * @throws JsonException
+     * @throws APICallException
+     */
     public function get(string $reference): Subscription {
         $subscriptionResponse = $this->call('GET', "/subscriptions/$reference");
 
