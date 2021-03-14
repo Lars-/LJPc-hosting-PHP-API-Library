@@ -15,7 +15,7 @@ class DomainNameHydrator extends DomainName {
         $domainName->domainOwnerReference     = $data['domainOwnerReference'];
         $domainName->nameserverGroupReference = $data['nameserverGroupReference'];
         $domainName->status                   = $data['status'];
-        $domainName->authCode                 = $data['authCode'];
+        $domainName->authCode                 = $data['authCode'] ?? '';
 
         $domainName->createdAt = DateTime::createFromFormat(DATE_ATOM, $data['createdAt']);
         $domainName->updatedAt = DateTime::createFromFormat(DATE_ATOM, $data['updatedAt']);
