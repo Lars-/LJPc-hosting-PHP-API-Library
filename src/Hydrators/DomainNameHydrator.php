@@ -14,6 +14,7 @@ class DomainNameHydrator extends DomainName {
         $domainName->hostname                 = $data['hostname'];
         $domainName->domainOwnerReference     = $data['domainOwnerReference'];
         $domainName->nameserverGroupReference = $data['nameserverGroupReference'];
+        $domainName->hostingReference         = $data['hostingReference'];
         $domainName->status                   = $data['status'];
         $domainName->authCode                 = $data['authCode'] ?? '';
 
@@ -30,6 +31,7 @@ class DomainNameHydrator extends DomainName {
             'hostname'                 => $domainName->hostname,
             'domainOwnerReference'     => $domainName->domainOwnerReference,
             'nameserverGroupReference' => $domainName->nameserverGroupReference,
+            'hostingReference'         => $domainName->hostingReference,
             'status'                   => $domainName->status,
             'authCode'                 => $domainName->authCode,
 
