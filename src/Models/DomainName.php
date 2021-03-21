@@ -14,11 +14,11 @@ class DomainName {
     protected string $hostname;
     protected string $domainOwnerReference;
     protected string $nameserverGroupReference;
-    protected string $hostingReference;
+    protected ?string $hostingReference;
     protected string $status;
     protected ?string $authCode = null;
 
-    public function getHostingReference(): string {
+    public function getHostingReference(): ?string {
         return $this->hostingReference;
     }
 

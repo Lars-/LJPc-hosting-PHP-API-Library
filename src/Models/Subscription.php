@@ -19,6 +19,7 @@ class Subscription {
     protected bool $active;
     protected string $productType;
     protected string $productReference;
+    protected array $payments;
     protected DateTime $createdAt;
     protected DateTime $updatedAt;
 
@@ -96,5 +97,9 @@ class Subscription {
 
     public function getUpdatedAt(): DateTime {
         return $this->updatedAt;
+    }
+
+    public function getPayments(): array {
+        return $this->payments;
     }
 }

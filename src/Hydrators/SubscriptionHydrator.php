@@ -20,6 +20,16 @@ class SubscriptionHydrator extends Subscription {
         $subscription->active           = (bool)$data['active'];
         $subscription->productType      = $data['productType'];
         $subscription->productReference = $data['productReference'];
+        $subscription->payments         = $data['payments'];
+        foreach ($subscription->payments as &$payment) {
+            if (isset($payment['createdAt'])) {
+                $payment['createdAt'] = DateTime::createFromFormat(DATE_ATOM, $payment['createdAt']);
+            }
+            if (isset($payment['validUntil'])) {
+                $payment['validUntil'] = DateTime::createFromFormat(DATE_ATOM, $payment['validUntil']);
+            }
+        }
+        unset($payment);
 
         $subscription->createdAt = DateTime::createFromFormat(DATE_ATOM, $data['createdAt']);
         $subscription->updatedAt = DateTime::createFromFormat(DATE_ATOM, $data['updatedAt']);
@@ -38,6 +48,7 @@ class SubscriptionHydrator extends Subscription {
             'active'           => $subscription->active,
             'productType'      => $subscription->productType,
             'productReference' => $subscription->productReference,
+            'payments'         => $subscription->payments,
             'createdAt'        => $subscription->createdAt->format(DATE_ATOM),
             'updatedAt'        => $subscription->updatedAt->format(DATE_ATOM),
         ];
