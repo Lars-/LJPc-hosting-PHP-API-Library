@@ -34,7 +34,7 @@ class DomainName {
         return $this->subscription;
     }
 
-    public function getSubscription(): string {
+    public function getSubscription(): ?Subscription {
         return API::instance()->subscriptions()->get($this->subscription);
     }
 
