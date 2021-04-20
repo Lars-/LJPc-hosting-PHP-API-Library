@@ -19,6 +19,7 @@ class ValuePack {
     protected float $sharedHostingPriceAbovePurchasePrice;
     protected int $freeDomains;
     protected int $purchasePriceDomains;
+    protected string $type;
 
     public function getReference(): string {
         return $this->reference;
@@ -78,5 +79,9 @@ class ValuePack {
 
     public function getPurchasePriceDomains(): int {
         return $this->purchasePriceDomains;
+    }
+
+    public function getType(): string {
+        return $this->type;
     }
 }

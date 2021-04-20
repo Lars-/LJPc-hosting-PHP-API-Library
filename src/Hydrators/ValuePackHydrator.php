@@ -19,6 +19,7 @@ class ValuePackHydrator extends ValuePack {
         $valuePack->dedicatedHostingPriceAbovePurchasePrice = $data['dedicatedHostingPriceAbovePurchasePrice'];
         $valuePack->sharedHostingDiscountPercentage         = $data['sharedHostingDiscountPercentage'];
         $valuePack->sharedHostingPriceAbovePurchasePrice    = $data['sharedHostingPriceAbovePurchasePrice'];
+        $valuePack->type                                    = $data['type'];
 
         $valuePack->createdAt = DateTime::createFromFormat(DATE_ATOM, $data['createdAt']);
         $valuePack->updatedAt = DateTime::createFromFormat(DATE_ATOM, $data['updatedAt']);
@@ -38,6 +39,7 @@ class ValuePackHydrator extends ValuePack {
             'dedicatedHostingPriceAbovePurchasePrice' => $valuePack->dedicatedHostingPriceAbovePurchasePrice,
             'sharedHostingDiscountPercentage'         => $valuePack->sharedHostingDiscountPercentage,
             'sharedHostingPriceAbovePurchasePrice'    => $valuePack->sharedHostingPriceAbovePurchasePrice,
+            'type'                                    => $valuePack->type,
 
             'createdAt' => $valuePack->createdAt->format(DATE_ATOM),
             'updatedAt' => $valuePack->updatedAt->format(DATE_ATOM),
